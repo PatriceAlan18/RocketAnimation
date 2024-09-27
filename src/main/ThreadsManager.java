@@ -64,6 +64,15 @@ public class ThreadsManager{
 			moveMeteor.start();
 			threads.add(moveMeteor);
 			break;
+		case "music":
+			Thread moveMusic = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {moveMusic(timer);}
+			});
+			moveMusic.start();
+			threads.add(moveMusic);
+			break;
 		default: System.err.print("Wrong task name "+task);
 				
 		}
@@ -133,7 +142,20 @@ public class ThreadsManager{
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-				System.err.print("Error in thread planets");
+				System.err.print("Error in thread meteor");
+			}
+		}
+	}
+	
+	private void moveMusic(int timer) {
+		while(!Thread.currentThread().isInterrupted()) {
+			try {
+				Thread.sleep(timer);
+				cb.moveMusic();
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				System.err.print("Error in thread music");
 			}
 		}
 	}

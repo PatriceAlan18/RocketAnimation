@@ -29,6 +29,8 @@ public class Rocket {
 	
 	private Fire rocketFire;
 	
+	private Point2D banjoPosition;
+	
 	public Rocket() {
 		rocketBuffer = new BufferedImage(ROCKET_BUFFER_SIZE_X,ROCKET_BUFFER_SIZE_Y,BufferedImage.TYPE_INT_ARGB);
 		rocketBufferLessFire = new BufferedImage(ROCKET_BUFFER_SIZE_X, ROCKET_BUFFER_SIZE_Y, BufferedImage.TYPE_INT_ARGB);
@@ -71,7 +73,7 @@ public class Rocket {
 		gManager.drawParametricCircleArc(180, 40, 30, 0, 35);
 		gManager.drawLine(198,46,210,55);
 		gManager.drawLine(198,64,210,55);
-		gManager.setColor(CustomColors.RED);
+		gManager.setColor(CustomColors.ROCKET_RED_COLOR);
 		gManager.drawVerticalLine(180,40,70);
 	}
 	
@@ -80,9 +82,9 @@ public class Rocket {
 		Point2D point = initGradient();
 
 		gManager.paintFloodWithGradient(gradient, rocketBuffer, point);
-		gManager.paintFlood(rocketBuffer, 181,55,CustomColors.RED);
-		gManager.paintFlood(rocketBuffer, 60,30,CustomColors.RED);
-		gManager.paintFlood(rocketBuffer,60,82,CustomColors.RED);
+		gManager.paintFlood(rocketBuffer, 181,55,CustomColors.ROCKET_RED_COLOR);
+		gManager.paintFlood(rocketBuffer, 60,30,CustomColors.ROCKET_RED_COLOR);
+		gManager.paintFlood(rocketBuffer,60,82,CustomColors.ROCKET_RED_COLOR);
 	}
 	
 	private Point2D initGradient() {
@@ -177,6 +179,8 @@ public class Rocket {
 		gManager.drawVerticalLine(99, 8, 16);
 		gManager.drawVerticalLine(98, 9, 15);
 		gManager.drawVerticalLine(97, 10, 16);
+		
+		banjoPosition = new Point2D(105, -60);
 	}
 	
 	private void drawAstronautBody() {
@@ -251,6 +255,8 @@ public class Rocket {
 	}
 	
 
-
+	public Point2D getBanjoPosition() {
+		return banjoPosition;
+	}
 
 }

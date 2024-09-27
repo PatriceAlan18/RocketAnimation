@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import graphics.CustomColors;
 import graphics.MyGraphics2D;
 import graphics.Point2D;
+import musicNotes.Music;
 import space.Meteors;
 import space.Planets;
 import space.Rocket;
@@ -21,6 +22,7 @@ public class Window extends JFrame{
 	private final int PLANETS_NUMBER = Utils.getRandom(8, 12);
 	private final int METEORS_NUMBER = Utils.getRandom(24, 30);
 	private final int ROCKET_X_MOVEMENT = 2;
+	private Point2D musicPosition;
 	
 	//Values
 	private Point2D rocketPosition;
@@ -30,7 +32,7 @@ public class Window extends JFrame{
 	private MyGraphics2D gManager;
 
 	//BufferedImages
-	private BufferedImage background, screen, starBuffer, planetsBuffer, rocketBuffer, rocketLessFireBuffer, meteorBuffer;
+	private BufferedImage background, screen, starBuffer, planetsBuffer, rocketBuffer, rocketLessFireBuffer, meteorBuffer, musicBuffer;
 	private Graphics gBackground, gScreen, gStarBuffer;
 	
 	//Animation elements
@@ -38,6 +40,7 @@ public class Window extends JFrame{
 	private Planets planets;
 	private Rocket rocket;
 	private Meteors meteors;
+	private Music music;
 	
 	public Window() {
 		this.setTitle("Rocket");
@@ -55,7 +58,8 @@ public class Window extends JFrame{
 		meteors = new Meteors(getWidth(),getHeight(), METEORS_NUMBER);
 		rocket = new Rocket();
 
-		
+		initMusic();
+
 	}
 	
 	@Override 
@@ -64,6 +68,7 @@ public class Window extends JFrame{
 		gScreen.drawImage(starBuffer, 0,0, this);
 		gScreen.drawImage(planetsBuffer, 0,0,this);
 		gScreen.drawImage(meteorBuffer, 0,0,this);
+		gScreen.drawImage(musicBuffer,0,0,this);
 		paintRocket();
 		
 		this.getGraphics().drawImage(screen, 0,0,this);
@@ -78,6 +83,12 @@ public class Window extends JFrame{
 		gStarBuffer = starBuffer.createGraphics();
 	}
 	
+	private void initMusic() {
+		Point2D banjoPosition = rocket.getBanjoPosition();
+		musicPosition = new Point2D(rocketPosition);
+		musicPosition.movePoint(banjoPosition);
+		music = new Music(musicPosition);
+	}
 
 	public void draw() {
 		drawBackground();
@@ -85,6 +96,7 @@ public class Window extends JFrame{
 		drawPlanets();
 		drawMeteors();
 		drawRocket();
+		drawMusic();
 		repaint();
 	}
 	
@@ -114,6 +126,10 @@ public class Window extends JFrame{
 	
 	private void drawMeteors() {
 		meteorBuffer = meteors.getMeteors();
+	}
+	
+	private void drawMusic() {
+		musicBuffer = music.getMusicBuffer();
 	}
 	
 	public void shineStars() {
@@ -155,4 +171,8 @@ public class Window extends JFrame{
 		meteorBuffer = meteors.getMeteors();
 	}
 	
+	public void moveMusic() {
+		music.moveNotes();
+		musicBuffer = music.getMusicBuffer();
+	}
 }

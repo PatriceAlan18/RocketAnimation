@@ -7,4 +7,5 @@ public interface AnimationCallback {
 	void movePlanets();
 	void moveRocket();
 	void moveMeteor();
+	void moveMusic();
 }

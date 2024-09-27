@@ -31,6 +31,7 @@ public class Meteor {
 	
 	public void drawMeteor() {
 		gManager.setGraphics(gMeteor);
+		gManager.setColor(CustomColors.METEOR_COLOR);
 		gManager.drawCircle(center, radius);
 		gManager.paintFlood(meteorBuffer, center, CustomColors.METEOR_COLOR);
 	}

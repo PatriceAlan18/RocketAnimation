@@ -11,6 +11,11 @@ public class Point2D {
 	public int x;
 	public int y;
 	
+	public Point2D(Point2D point) {
+		this.x = point.x;
+		this.y = point.y;
+	}
+	
 	public Point2D(int _x, int _y) {
 		this.x = _x;
 		this.y = _y;
