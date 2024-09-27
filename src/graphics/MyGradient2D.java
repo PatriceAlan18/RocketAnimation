@@ -27,7 +27,6 @@ public class MyGradient2D {
 		this.y0 = _y0;
 		//Color 1
 		this.c0 = _c0;
-		
 		//Point 1
 		this.x1 = _x1;
 		this.y1 = _y1;
@@ -51,8 +50,6 @@ public class MyGradient2D {
 	    
 	    return new Color(r, g, b, a);
 	}
-	
-
 	
 	private void setColorValues() {
 		red0 = c0.getRed();
