@@ -6,6 +6,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
+import java.io.BufferedInputStream;
 
 public class Main{
 	
@@ -30,18 +31,23 @@ public class Main{
 			e.printStackTrace();
 		}
 
-	    try (InputStream inputStream = Main.class.getResourceAsStream("/music/Travelers.wav")) {
-	        if (inputStream == null)  throw new IllegalArgumentException("Can't find the music file.");
-	        
-	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputStream);
-	        backgroundMusic.open(audioInputStream);
-	        backgroundMusic.loop(Clip.LOOP_CONTINUOUSLY);
-	        
-	        backgroundMusic.start();
-	    } catch (Exception e) {
-	        e.printStackTrace();
+	    try (
+	            InputStream audioSrc = Main.class.getResourceAsStream("/music/Travelers.wav");
+	            BufferedInputStream bufferedIn = new BufferedInputStream(audioSrc)
+	        ) {
+	            if (audioSrc == null) {
+	                System.err.println("No se encontró el archivo de música.");
+	                return;
+	            }
+
+	            AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
+	            backgroundMusic.open(audioStream);
+	            backgroundMusic.loop(Clip.LOOP_CONTINUOUSLY);
+	            backgroundMusic.start();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 	    }
-	}
 
 	
 }

@@ -36,7 +36,7 @@ public class Matrix {
 		return m.toString();
 	}
 	
-	public String toStringMatrix(int[][] matrix) {
+	public String toString(int[][] matrix) {
 		StringBuilder m = new StringBuilder();
 		for(int i = 0; i<matrix.length; i++) {
 			for(int j = 0; j<matrix[i].length; j++) {
@@ -47,7 +47,7 @@ public class Matrix {
 		return m.toString();
 	}
 	
-	public String toStringMatrix(double[][] matrix) {
+	public String toString(double[][] matrix) {
 		StringBuilder m = new StringBuilder();
 		for(int i = 0; i<matrix.length; i++) {
 			for(int j = 0; j<matrix[i].length; j++) {

@@ -46,7 +46,7 @@ public class CustomColors {
 	
 	
 	//Color arrays
-	public static final Color[] SPACE_COLOR = {BLACK,BLACK,BLACK,BLACK, new Color(24,28,34), new Color(15,10,10) };
+	public static final Color[] SPACE_COLOR = {BLACK,BLACK,BLACK,BLACK,BLACK, new Color(24,28,34), new Color(15,10,10) };
 	
 	
 	//Planet Colors
